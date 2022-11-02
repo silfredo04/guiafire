@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>api-detalle-cantantes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="informacion">
+    <ion-card-content>
+      <h1>street: {{informacion.address.street}}</h1>
+      <p>suite: {{informacion.address.suite}}</p>
+      <p>city: {{informacion.address.city}}</p>
+      <p>zipcode: {{informacion.address.zipcode}}</p>
+      <h2>geo</h2>
+      <p>lat: {{informacion.address.geo.lat}}</p>
+      <p>lng: {{informacion.address.geo.lng}}</p>
+    </ion-card-content>
+    <ion-buttons>
+      <ion-button routerLink="/api-cantantes">
+        <ion-icon slot="end" name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-card>
+</ion-content>

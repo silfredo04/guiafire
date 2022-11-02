@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let m of Menus" routerLink="/{{m.ruta}}" >
+    <ion-card-header>
+      <h3><ion-card-title>{{m.titulo}}</ion-card-title></h3>
+      <img src="{{m.imagen}}">
+    </ion-card-header>
+  </ion-card>
+</ion-content>

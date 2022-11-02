@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recording</ion-title>
+    <ion-buttons>
+      <ion-button routerLink="/recording-create">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/menu">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  <ion-card *ngFor="let r of RecordingList | async">
+    <ion-card-header>
+      {{r.nameRedording}}
+    </ion-card-header>
+    <ion-card-content>
+      Type Melody: {{r.type_of_melody}}
+    </ion-card-content>
+    <ion-buttons>
+      <ion-button routerLink="/recording-detail/{{r.id}}" title="Detalle">
+        <ion-icon name="reorder-four-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/recording-edit/{{r.id}}" title="Editar">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/recording-delete/{{r.id}}" title="Eliminar">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-card>
+</ion-content>

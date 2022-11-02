@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Api_Galeria</ion-title>
+    <ion-buttons>
+      <ion-button routerLink="/menu">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="planet" *ngIf="cargando">
+  </div>
+  <ion-grid>
+    <ion-row *ngIf="!cargando">
+      <ion-col class="img-wrapper"  sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let r of res" [routerLink]="['/','api-detalle-galeria',r.id]">
+        <ion-img src="{{r.thumbnailUrl}}"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

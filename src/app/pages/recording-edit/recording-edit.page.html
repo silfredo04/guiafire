@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Recording-edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">nameRedording</ion-label>
+    <ion-input type="text" [(ngModel)]="recording.nameRedording" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">type_of_melody</ion-label>
+    <ion-input [(ngModel)]="recording.type_of_melody" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">number_of_cabins</ion-label>
+    <ion-input [(ngModel)]="recording.number_of_cabins" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Owner</ion-label>
+    <ion-textarea [(ngModel)]="recording.Owner" required></ion-textarea>
+  </ion-item>
+
+  <ion-button
+    class="ion-padding"
+    color="primary"
+    expand="full"
+    (click)="updateRecording(recording)"
+    >Actualizar</ion-button
+  >
+  <ion-button 
+    class="ion-padding" 
+    color="light" 
+    expand="full" 
+    [routerLink]="['/recording-studios']"
+  >
+    Regresar
+  </ion-button>
+</ion-content>

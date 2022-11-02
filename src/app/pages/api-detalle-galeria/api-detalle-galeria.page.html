@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>api-detalle-galeria</ion-title>
+    <ion-buttons>
+      <ion-button routerLink="/api-galeria">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="loading text-center" *ngIf="cargando">
+    <div class="d1"></div>
+    <div class="d2"></div>
+  </div>
+
+  <ion-card *ngIf="!cargando">
+    <ion-card-header>
+      <ion-card-title>{{informacion.title}}</ion-card-title>
+      <img src="{{informacion.thumbnailUrl}}">
+    </ion-card-header>
+    <ion-buttons>
+      <ion-button (click)="createGaleria(informacion)" title="Agregar Galeria">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-card>
+</ion-content>

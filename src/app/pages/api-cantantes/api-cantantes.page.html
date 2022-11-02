@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Api_cantantes</ion-title>
+    <ion-buttons>
+      <ion-button routerLink="/menu">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="planet" *ngIf="cargando">
+  </div>
+  <div *ngIf="!cargando">
+    <ion-card *ngFor="let r of res" [routerLink]="['/','api-detalle-cantantes',r.id]">
+      <ion-card-header>
+        {{r.name}}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-label>username: {{r.username}}</ion-label>
+        <ion-label>email: {{r.email}}</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

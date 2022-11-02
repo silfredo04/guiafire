@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{(Recording | async)?.nameRedording}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Recording</h3>
+  <p>
+    The Recording {{(Recording | async)?.nameRedording}}.
+  </p>
+  <h3>number_of_cabins</h3>
+  <p>
+    The number_of_cabins {{(Recording | async)?.number_of_cabins}}.
+  </p>
+  <h3>type_of_melody</h3>
+  <p>
+    The type_of_melody {{(Recording | async)?.type_of_melody}}.
+  </p>
+  <h3>Owner</h3>
+  <p>
+    {{(Recording | async)?.Owner}}
+  </p>
+</ion-content>
