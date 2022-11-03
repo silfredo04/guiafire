@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} from "@angular/fire/compat/firestore";
 import {Song} from '../../song.interface'
 import {Recording} from '../../recording.interface'
+import { Galeria } from "../../galeria.interface";
 
 
 @Injectable({
@@ -43,8 +44,20 @@ export class FirestoreService {
     return this.angularFirestore.collection(`listaRecording`);
   }
 
+  getGaleriaList():AngularFirestoreCollection<Galeria>{
+    return this.angularFirestore.collection(`ListaGaleria`);
+  }
+
   getSongDetail(songId:string):AngularFirestoreDocument<Song>{
     return this.angularFirestore.collection(`listaCanciones`).doc(songId);
+  }
+
+  getGaleriaDetail(GaleriaId:string):any{
+    // return this.angularFirestore.collection(`ListaGaleria`).doc(GaleriaId);
+    /* const collection = this.angularFirestore.collection('ListaGaleria');
+    return collection.doc(GaleriaId).valueChanges(); */
+    const result = this.angularFirestore.collection('ListaGaleria', ref => ref.where('id', '==', parseInt(GaleriaId)));
+    return result.valueChanges();
   }
 
   getRecordingDetail(RecordId:string):AngularFirestoreDocument<Recording>{

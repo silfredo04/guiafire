@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GaleriaService} from 'src/app/pages/galeria.service'
 import{Observable}from "rxjs";
 import{ActivatedRoute} from '@angular/router';
-import { Recording } from "../../recording.interface";
+import { Galeria } from "../../galeria.interface";
 import {
   ToastController,
   LoadingController,
@@ -10,6 +10,8 @@ import {
 } from "@ionic/angular";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { FirestoreService } from '../../services/data/firestore.service';
+
 
 @Component({
   selector: 'app-api-detalle-galeria',
@@ -19,6 +21,8 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 export class ApiDetalleGaleriaPage implements OnInit {
   informacion:any={};
   cargando: boolean = true;
+  GaleriaList:any;
+  Id:any;
   constructor(
     private galeriaService:GaleriaService, 
     private activatedRoute:ActivatedRoute,
@@ -26,40 +30,44 @@ export class ApiDetalleGaleriaPage implements OnInit {
     private loadingCtrl: LoadingController,
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private firestoreService:FirestoreService
     ) { }
 
   ngOnInit() {
-    let id= this.activatedRoute.snapshot.paramMap.get('id');
-    this.galeriaService.getGaleriaDetalles(id).subscribe(res => {
+    this.Id= this.activatedRoute.snapshot.paramMap.get('id');
+    this.firestoreService.getGaleriaDetail(this.Id).subscribe((res:any) => {
+      this.GaleriaList = res
+    });
+    this.galeriaService.getGaleriaDetalles(this.Id).subscribe(res => {
       this.informacion = res;
       this.cargando = false;
     });
   }
 
-  async createGaleria(informacion: Recording) {
-    // console.log(post);
-
+  async createGaleria(informacion: Galeria) {
     if (this.formValidation()) {
-      // console.log("ready to submit");
-
-      // show loader
-      let loader = await this.loadingCtrl.create({
-        message: "Creando Imagen..."
-      });
-      loader.present();
-
-      try {
-        await this.firestore.collection("ListaGaleria").add(informacion);
-      } catch (e) {
-        this.showToast(e);
+      if(this.GaleriaList.length > 0){
+        this.showToast("No se admiten fotos duplicadas");
+      }else{
+        let loader = await this.loadingCtrl.create({
+          message: "Creando Imagen..."
+        });
+        loader.present();
+  
+        try {
+          await this.firestore.collection("ListaGaleria").add(informacion);
+        } catch (e) {
+          this.showToast(e);
+        }
+  
+        // dismiss loader
+        loader.dismiss();
+  
+        // redirect to home page
+        this.navCtrl.navigateRoot("api-galeria");
       }
-
-      // dismiss loader
-      loader.dismiss();
-
-      // redirect to home page
-      this.navCtrl.navigateRoot("api-galeria");
+      // show loader 
     }
   }
 
