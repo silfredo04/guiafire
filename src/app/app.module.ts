@@ -11,6 +11,9 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {firebaseConfig} from './credenciales';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
+import firebase from 'firebase/compat/app';
+
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [AppComponent],

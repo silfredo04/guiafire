@@ -41,7 +41,7 @@ export class DetailPage implements OnInit {
           text: 'Okay',handler: () => {
             this.firestoreService.deleteSong(this.songId).then(
               () => {
-                this.router.navigateByUrl('');
+                this.router.navigateByUrl('home');
               });
           },
         },

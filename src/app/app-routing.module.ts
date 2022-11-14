@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'menu',
+    redirectTo: 'cargando',
     pathMatch: 'full'
   },
   {
@@ -62,6 +62,22 @@ const routes: Routes = [
   {
     path: 'recording-delete/:id',
     loadChildren: () => import('./pages/recording-delete/recording-delete.module').then( m => m.RecordingDeletePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/autenticacion/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'recover',
+    loadChildren: () => import('./pages/autenticacion/recover/recover.module').then( m => m.RecoverPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/autenticacion/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'cargando',
+    loadChildren: () => import('./cargando/cargando.module').then( m => m.CargandoPageModule)
   },
 ];
 
