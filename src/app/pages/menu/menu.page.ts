@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from 'src/app/services/autenticacion/auth.service';
+import {
+  ToastController,
+  LoadingController,
+  NavController
+} from "@ionic/angular";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -32,17 +38,36 @@ export class MenuPage implements OnInit {
       titulo:"Recording_studios",
       imagen:"../assets/img/recordin.jpg",
       ruta:"recording-studios"
+    },
+    {
+      id:"5",
+      titulo:"Event",
+      imagen:"../assets/img/event.jpg",
+      ruta:"event"
     }
   ];
 
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private loadingCtrl: LoadingController,
+    private router:Router
   ) { }
 
 
-  logoutUser():void{
-    this.authService.logoutUser()
-  }
+  async cerrarSesion() {
+    const loading = await this.loadingCtrl.create({ message: 'Cerrando Sesión!!' })
+    this.authService.logoutUser().then(() => {
+      loading.dismiss().then(() => {
+        this.router.navigateByUrl('login');
+      })
+    },
+    error => {
+      console.error(error)
+    }
+    )
+    return await loading.present()
+  }
+
   ngOnInit() {
   }
 

@@ -32,4 +32,9 @@ export class AuthService {
     return firebase.auth().signOut();
   }
 
+  // esta funcion optiene datos de una base de datos
+  getUser(): any { 
+    return firebase.auth().currentUser;
+  }
+
 }

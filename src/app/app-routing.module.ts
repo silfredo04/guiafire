@@ -79,6 +79,22 @@ const routes: Routes = [
     path: 'cargando',
     loadChildren: () => import('./cargando/cargando.module').then( m => m.CargandoPageModule)
   },
+  {
+    path: 'event-create',
+    loadChildren: () => import('./pages/event-create/event-create.module').then( m => m.EventCreatePageModule)
+  },
+  {
+    path: 'event-detail/:id',
+    loadChildren: () => import('./pages/event-detail/event-detail.module').then( m => m.EventDetailPageModule)
+  },
+  {
+    path: 'event-list',
+    loadChildren: () => import('./pages/event-list/event-list.module').then( m => m.EventListPageModule)
+  },
+  {
+    path: 'event',
+    loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
+  },
 ];
 
 @NgModule({
