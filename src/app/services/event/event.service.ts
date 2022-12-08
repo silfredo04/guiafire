@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from "@
 import { FirebaseApp } from 'firebase/app'
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,11 +33,22 @@ export class EventService {
     });
   }
 
+  async obtenerPerfil():Promise<any>{
+    const user: firebase.User = await this.authService.getUser(); 
+    return this.angularFirestore.collection(`userProfile`).doc(user.uid);
+  }
+
   getEventList(){
     const user: firebase.User = this.authService.getUser();
     const ref = this.angularFirestore.collection(`userProfile/${user.uid}/eventList`);
     return ref.valueChanges({idField:'id'});
   }
+
+  getEventListtotal(){
+    const ref = this.angularFirestore.collection(`userProfile`);
+    return ref.valueChanges();
+  }
+
 
   getEventDetail(eventId:string):AngularFirestoreDocument{
     const user: firebase.User = this.authService.getUser();

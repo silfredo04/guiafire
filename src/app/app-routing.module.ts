@@ -95,6 +95,10 @@ const routes: Routes = [
     path: 'event',
     loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
   },
+  {
+    path: 'register-coordenadores',
+    loadChildren: () => import('./pages/register-coordenadores/register-coordenadores.module').then( m => m.RegisterCoordenadoresPageModule)
+  },
 ];
 
 @NgModule({

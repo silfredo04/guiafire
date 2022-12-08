@@ -72,5 +72,11 @@ export class FirestoreService {
     return this.angularFirestore.doc(`listaRecording/${RecordId}`).delete();
   }
 
+
+  createDoc(data:any, path:string, id:string){
+    const collection = this.angularFirestore.collection(path);
+    return collection.doc(id).set(data);
+  }
+
   
 }

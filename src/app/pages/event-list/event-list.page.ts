@@ -9,7 +9,8 @@ import { EventService } from 'src/app/services/event/event.service';
 export class EventListPage implements OnInit {
 
   eventList:any = [];
-
+  tota:any = [];
+ 
   constructor(
     private eventService:EventService
   ) { }
@@ -17,6 +18,8 @@ export class EventListPage implements OnInit {
   ngOnInit() {
     console.log(typeof(this.eventList));
     this.eventList = this.eventService.getEventList();
+    this.tota = this.eventService.getEventListtotal();
+    console.log(typeof(this.tota));
   }
 
 }
